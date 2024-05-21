@@ -13,54 +13,54 @@ import InfoIcon from "@mui/icons-material/Info";
 import DeleteIcon from "@mui/icons-material/Delete";
 //FIC: Columns Table Definition.
 const OrdersColumns = [
-    {
-      accessorKey: "IdInstitutoOK",
-      header: "ID Institute",
-      size: 30, //small column
-    },
-    {
-      accessorKey: "IdNegocioOK",
-      header: "ID Business",
-      size: 30, //small column
-    },
-    {
-      accessorKey: "IdEntregaOK",
-      header: "Order ID",
-      size: 150, //small columnz
-    },
-    {
-      accessorKey: "IdEntregaBK",
-      header: "Backup Delivery ID",
-      size: 50, //small column
-    },
-    {
-      accessorKey: "IdOrdenOK",
-      header: "Delivery ID",
-      size: 30, //small column
-    },
-  ];
-  
+  {
+    accessorKey: "IdInstitutoOK",
+    header: "ID Institute",
+    size: 30, //small column
+  },
+  {
+    accessorKey: "IdNegocioOK",
+    header: "ID Business",
+    size: 30, //small column
+  },
+  {
+    accessorKey: "IdEntregaOK",
+    header: "Order ID",
+    size: 150, //small columnz
+  },
+  {
+    accessorKey: "IdEntregaBK",
+    header: "Backup Delivery ID",
+    size: 50, //small column
+  },
+  {
+    accessorKey: "IdOrdenOK",
+    header: "Delivery ID",
+    size: 30, //small column
+  },
+];
+
 //FIC: Table - FrontEnd.
- 
 
-  const OrdersTable = () => {
 
-    const [data,setData] = useState({});
-    const navigate = useNavigate();
+const OrdersTable = () => {
 
-    useEffect(()=>{
-      setData(OrdersStaticData)
-    },[]);
+  const [data, setData] = useState({});
+  const navigate = useNavigate();
 
-    const handleRowClick = (row) => {
-      const orderId = row.original.IdEntregaOK;
-      navigate(`/shippings/${orderId}`);
-    };
-  
-    return (
+  useEffect(() => {
+    setData(OrdersStaticData)
+  }, []);
+
+  const handleRowClick = (row) => {
+    const orderId = row.original.IdEntregaOK;
+    navigate(`/shippings/${orderId}`);
+  };
+
+  return (
+    <Box>
       <Box>
-        <Box>
-          <MaterialReactTable
+        <MaterialReactTable
           initialState={{ density: "compact", showGlobalFilter: true }}
           columns={OrdersColumns}
           data={OrdersStaticData}
@@ -70,8 +70,8 @@ const OrdersColumns = [
               <Stack direction="row" sx={{ m: 1 }}>
                 <Box>
                   <Tooltip title="Agregar">
-                    <IconButton 
-                    onClick={() => setAddShippingShowModal(true)}>
+                    <IconButton
+                      onClick={() => setAddShippingShowModal(true)}>
                       <AddCircleIcon />
                     </IconButton>
                   </Tooltip>
@@ -100,10 +100,10 @@ const OrdersColumns = [
             style: { cursor: 'pointer' }, // Change cursor to pointer on hover
           })}
 
-          />
-        </Box>
-      </Box> 
-    )
-    
-  };
-  export default OrdersTable;
+        />
+      </Box>
+    </Box>
+  )
+
+};
+export default OrdersTable;
