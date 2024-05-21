@@ -7,7 +7,8 @@ import ShippingsTab from "../components/tabs/ShippingsTab";
 import InfoRastreoTab from "../components/tabs/InfoRastreoTab";
 import ActRastreoTab from "../components/tabs/ActRastreoTab";
 import EstatusTab from "../components/tabs/EstatusTab";
-
+import { Navigate } from "react-router-dom";
+import OrdersTable from "../components/tables/OrdersTable";
 
 const ShippingsId = () => {
     const [currentRowInShippingsTab, setCurrentRowInShippingsTab] = useState(0);
@@ -27,7 +28,6 @@ const ShippingsId = () => {
     const handleSubTabChange = (event, newValue) => {
         setCurrentSubTab(newValue);
     };
-
     useEffect(() => {
         setCurrentSubTab(currentTabInPrincipalTab);
     }, [currentTabInPrincipalTab]);
@@ -35,8 +35,8 @@ const ShippingsId = () => {
     return (
         <Box>
             <Tabs value={mainTab} onChange={handleMainTabChange}>
-                <Tab label="Subtabs" value="SUBTABS" />
-                <Tab label="Subtabs2" value="SUBTABS2" />
+                <Tab label="ORDENES" value="SUBTABS2" />
+                <Tab label="ENTREGAS" value="SUBTABS" />
                 {/* Add more main tabs as needed */}
             </Tabs>
 
@@ -58,11 +58,13 @@ const ShippingsId = () => {
             manda llamar la pagina que va dentro del tab de Business. */}
                 </Box>
             )}
-
+ 
             {mainTab === "SUBTABS2" && (
                 <Box>
-                    <ProductosTab />
+                    <OrdersTable/>
                 </Box>
+                
+                
             )}
         </Box>
 
