@@ -5,9 +5,8 @@ export default function ProductosTab() {
     return (
  
       <Box>
-            <ProductosTable />
             <h2>Tabla de Productos</h2>
- 
+            <ProductosTable />
       </Box>
  
     );

@@ -1,10 +1,13 @@
-
+import { Box } from "@mui/material";
+import ProductosTable from "../tables/ProductosTable";
 import ShippingsTable from "../tables/ShippingsTable";
-//FIC:
 export default function ShippingsTab() {
-  <div>
-  <ShippingsTable
-  />
-
-</div>
-  }
+    return (
+ 
+      <Box>
+            <h2>Shippings</h2>
+            <ShippingsTable />
+      </Box>
+ 
+    );
+}
