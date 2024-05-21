@@ -56,8 +56,7 @@ const OrdersColumns = [
       const orderId = row.original.IdEntregaOK;
       navigate(`/shippings/${orderId}`);
     };
-
-    console.log(data)
+  
     return (
       <Box>
         <Box>
