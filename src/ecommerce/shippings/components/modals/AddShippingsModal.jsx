@@ -1,7 +1,9 @@
 // AddShippingShowModal.jsx
 
 import React, { useState } from 'react';
-import { createEntrega } from '../../../../core/api/entregas';
+
+import { newEnvio } from '../../../../core/api/entregas';
+
 const AddShippingShowModal = ({ onClose }) => {
   const [addressId, setAddressId] = useState('');
   const [repartidorId, setRepartidorId] = useState('');
@@ -10,6 +12,25 @@ const AddShippingShowModal = ({ onClose }) => {
   const [productos, setProductos] = useState('');
   const [estatus, setEstatus] = useState('');
   // Lógica para manejar cambios en los campos y enviar datos al servidor
+
+  const handleSave = async () => {
+    const entrega = {
+      IdDomicilioOK: addressId,
+      IdPaqueteriaOK: repartidorId,
+      IdTipoMetodoEnvio: metodoEnvio,
+      CostoEnvio:costoEnvio,
+      productos,
+      estatus,
+    };
+
+  try {
+      const response = await newEnvio('', entrega);
+      console.log(response);
+      onClose();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="modal">
@@ -53,7 +74,7 @@ const AddShippingShowModal = ({ onClose }) => {
         value={estatus}
         onChange={(e) => setEstatus(e.target.value)}
       />
-      <button onClick={createEntrega}>Guardar</button>
+      <button onClick={handleSave}>Guardar</button>
     </div>
   );
 };
