@@ -33,8 +33,12 @@ const ShippingsId = () => {
     }, [currentTabInPrincipalTab]);
 
     return (
-        <Box>
-            <Tabs value={mainTab} onChange={handleMainTabChange}>
+        <Box sx={{ border: (theme) => `1px solid ${theme.palette.divider}`, mx: 1, padding: 0.5 }}>
+            <Tabs
+                value={mainTab}
+                variant={"fullWidth"}
+                onChange={handleMainTabChange}
+            >
                 <Tab label="ORDENES" value="SUBTABS2" />
                 <Tab label="ENTREGAS" value="SUBTABS" />
                 {/* Add more main tabs as needed */}
@@ -49,22 +53,22 @@ const ShippingsId = () => {
                     />
                     {/* FIC: si en el tap principal esta seleccionado es el tab de ENTREGAS
             manda llamar la pagina que va dentro del tab de Institutos. */}
-                    {currentSubTab == "SHIPPINGS" && <ShippingsTab/>}
-                    {currentSubTab == "PRODUCTOS" && <ProductosTab/>}
-                    {currentSubTab == "ESTATUS" && <EstatusTab/>}
-                    {currentSubTab == "INFORMACION RASTREO" && <InfoRastreoTab/>}
-                    {currentSubTab == "ACTUALIZACION RASTREO" && <ActRastreoTab/>}
+                    {currentSubTab == "SHIPPINGS" && <ShippingsTab />}
+                    {currentSubTab == "PRODUCTOS" && <ProductosTab />}
+                    {currentSubTab == "ESTATUS" && <EstatusTab />}
+                    {currentSubTab == "INFORMACION RASTREO" && <InfoRastreoTab />}
+                    {currentSubTab == "ACTUALIZACION RASTREO" && <ActRastreoTab />}
                     {/* FIC: si en el tap principal esta seleccionado el tab de NEGOCIOS
             manda llamar la pagina que va dentro del tab de Business. */}
                 </Box>
             )}
- 
+
             {mainTab === "SUBTABS2" && (
                 <Box>
-                    <OrdersTable/>
+                    <Navigate to="/shippings" />
                 </Box>
-                
-                
+
+
             )}
         </Box>
 

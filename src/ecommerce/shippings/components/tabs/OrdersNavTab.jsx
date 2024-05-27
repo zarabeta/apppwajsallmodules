@@ -4,16 +4,16 @@ const OrdersTabs = ["Ordenes", "Entregas"];
 
 //const OrdersNavTab = ({currentRowInOrdersTab, setCurrentNameTabInPrincipalTab, setBusinessTabInPrincipalTabIsSelected}) => {
 
-const OrdersNavTab = ({currentRowInOrdersTab, setCurrentNameTabInPrincipalTab}) => {
+const OrdersNavTab = ({ currentRowInOrdersTab, setCurrentNameTabInPrincipalTab }) => {
     //FIC: para saber cual es el numero de Tab seleccionado.
     const [currenTabIndex, setCurrentTabIndex] = useState(0);
     const handleChange = (e) => {
-       
+
         console.log("entro al handleChange", e.target.innerText.toUpperCase());
-       
+
         //FIC: actualizar el nombre de la pestaña seleccionada.
-       
-       
+
+
         //FIC: cada que realice un click en algun tap page
         //reiniciamos el valor del tap pase de business a false.
         //setBusinessTabInPrincipalTabIsSelected(false);
@@ -46,7 +46,7 @@ const OrdersNavTab = ({currentRowInOrdersTab, setCurrentNameTabInPrincipalTab}) 
                 textColor="primary"
             >
                 {OrdersTabs.map((tab) => {
-                    return <Tab key={tab} label={tab} disabled ={currentRowInOrdersTab === null}/>;
+                    return <Tab key={tab} label={tab} disabled={currentRowInOrdersTab === null} />;
                 })}
             </Tabs>
         </Box>
