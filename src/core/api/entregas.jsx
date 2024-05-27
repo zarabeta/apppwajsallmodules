@@ -24,3 +24,8 @@ export const deleteEntrega = async (id) => {
     const response = await apiService.delete(`entregas/${id}`);
     return response;
 }
+
+export const newEnvio = async (id, entrega) => {
+    const response = await apiService.post(`entregas/envio/${id}`, entrega);
+    return response;
+}
