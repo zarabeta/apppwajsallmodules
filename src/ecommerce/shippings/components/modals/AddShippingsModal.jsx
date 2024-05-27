@@ -24,7 +24,7 @@ const AddShippingShowModal = ({ onClose }) => {
     };
 
   try {
-      const response = await newEnvio('', entrega);
+      const response = await newEnvio(' ', entrega);
       console.log(response);
       onClose();
     } catch (error) {

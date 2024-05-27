@@ -56,6 +56,7 @@ const ShippingsColumns = [
 const ShippingsTable = () => {
   ////////////modal
   const [AddShippingShowModal, setAddShippingShowModal] = useState(false);
+  
   const handleUpdateShippingData = async () => {
     try {
       const updatedShippingsData = await getAllShippings();
