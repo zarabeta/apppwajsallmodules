@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://your-api-url.com';
+const API_URL = 'http://localhost:3020';
 const HEADERS = { 'Content-Type': 'application/json' };
 
 const instance = axios.create({

@@ -2,13 +2,14 @@
 //FIC: Material UI
 import { MaterialReactTable } from 'material-react-table';
 import { useState } from "react";
-//FIC: DB
 
+//FIC: DB
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import EditIcon from "@mui/icons-material/Edit";
 import InfoIcon from "@mui/icons-material/Info";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import {getEntregas} from '../../../../core/api/entregas';
 
 import { Box, Stack, Tooltip, Button, IconButton, Dialog, darken } from "@mui/material";
 import ShippingsStaticData from '../../../../../db/ecommerce/json/shippings/ShippingsData';
@@ -45,17 +46,17 @@ const ShippingsColumns = [
 
     const [data,setData] = useState({});
     useEffect(()=>{
-      setData(ShippingsStaticData)
+      setData(getEntregas)
     },[]);
 
-    console.log(data)
+    console.log(getEntregas)
     return (
       <Box>
-        <Box>
+        <Box> 
           <MaterialReactTable
           initialState={{ density: "compact", showGlobalFilter: true }}
           columns={ShippingsColumns}
-          data={ShippingsStaticData}
+          data={getEntregas}
           renderTopToolbarCustomActions={({ table }) => (
             <>
               {/* ------- BARRA DE ACCIONES ------ */}

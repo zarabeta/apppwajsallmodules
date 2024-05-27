@@ -1,4 +1,4 @@
-import apiService from '../services/api.service';
+import apiService from '../service/api';
 
 export const getEntregas = async () => {
     const response = await apiService.get('entregas');
