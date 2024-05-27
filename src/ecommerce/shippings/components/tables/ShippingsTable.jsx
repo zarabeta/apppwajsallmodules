@@ -38,6 +38,16 @@ const ShippingsColumns = [
     header: "Costo",
     size: 50, //small column
   },
+  {
+    accessorKey: "Productos",
+    header: "productos",
+    size: 50, //small column
+  },
+  {
+    accessorKey: "Estatus",
+    header: "estatus",
+    size: 50, //small column
+  },
 ];
 
 //FIC: Table - FrontEnd.
@@ -63,17 +73,17 @@ const ShippingsTable = () => {
 
     const [data,setData] = useState({});
     useEffect(()=>{
-      setData(getEntregas)
+      setData(ShippingsStaticData)
     },[]);
 
-    console.log(getEntregas)
+    console.log(data)
     return (
       <Box>
         <Box> 
           <MaterialReactTable
           initialState={{ density: "compact", showGlobalFilter: true }}
           columns={ShippingsColumns}
-          data={getEntregas}
+          data={data}
           renderTopToolbarCustomActions={({ table }) => (
             <>
               {/* ------- BARRA DE ACCIONES ------ */}
