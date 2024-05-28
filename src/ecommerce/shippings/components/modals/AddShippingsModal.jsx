@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import { newEnvio } from '../../../../core/api/entregas';
 
-const AddShippingShowModal = ({ onClose }) => {
+const AddShippingShowModal = ({ onClose, id }) => {
   const [addressId, setAddressId] = useState('');
   const [repartidorId, setRepartidorId] = useState('');
   const [metodoEnvio, setMetodoEnvio] = useState('');
@@ -19,12 +19,14 @@ const AddShippingShowModal = ({ onClose }) => {
       IdPaqueteriaOK: repartidorId,
       IdTipoMetodoEnvio: metodoEnvio,
       CostoEnvio:costoEnvio,
-      productos,
-      estatus,
+      // productos,
+      // estatus,
+      productos:[{}],
+      estatus:[{}],
     };
 
   try {
-      const response = await newEnvio('', entrega);
+      const response = await newEnvio(id, entrega);
       console.log(response);
       onClose();
     } catch (error) {
@@ -34,6 +36,10 @@ const AddShippingShowModal = ({ onClose }) => {
 
   return (
     <div className="modal">
+      {/* id*/}
+      {/* <p>
+        <strong>id:</strong> {id}
+      </p> */}
       <button className="close-button" onClick={onClose}>
         ✖
       </button>
