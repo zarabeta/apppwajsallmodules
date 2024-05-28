@@ -74,19 +74,27 @@ const { id } = useParams();
   const [selectedRowIndex, setSelectedRowIndex] = useState(null); //Para saber cual es la fila y pasarla para el color de la tabla
   /////////////////////////
 
-    const [data,setData] = useState({});
-    useEffect(()=>{
-      setData(ShippingsStaticData)
-    },[]);
+  const [data,setData] = useState(ShippingsStaticData);
 
-    console.log(data)
+  useEffect(() => {
+    const fetchShippingsData = async () => {
+      const ShippingsData = await getEntregas();
+      setData(ShippingsData);
+    };
+  
+    fetchShippingsData();
+  }, []);
+
+    console.log()
     return (
       <Box>
         <Box> 
           <MaterialReactTable
           initialState={{ density: "compact", showGlobalFilter: true }}
           columns={ShippingsColumns}
+
           data={data}
+
           renderTopToolbarCustomActions={({ table }) => (
             <>
               {/* ------- BARRA DE ACCIONES ------ */}
