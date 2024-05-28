@@ -58,6 +58,7 @@ const { id } = useParams();
 
   ////////////modal
   const [AddShippingShowModal, setAddShippingShowModal] = useState(false);
+  
   const handleUpdateShippingData = async () => {
     try {
       const updatedShippingsData = await getAllShippings();
@@ -84,14 +85,15 @@ useEffect(() => {
   fetchShippingsData();
 }, []);
 
-    console.log(data)
     return (
       <Box>
         <Box> 
           <MaterialReactTable
           initialState={{ density: "compact", showGlobalFilter: true }}
           columns={ShippingsColumns}
+
           data={data}
+
           renderTopToolbarCustomActions={({ table }) => (
             <>
               {/* ------- BARRA DE ACCIONES ------ */}
