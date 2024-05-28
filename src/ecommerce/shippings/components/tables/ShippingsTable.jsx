@@ -73,10 +73,16 @@ const { id } = useParams();
   const [selectedRowIndex, setSelectedRowIndex] = useState(null); //Para saber cual es la fila y pasarla para el color de la tabla
   /////////////////////////
 
-    const [data,setData] = useState({});
-    useEffect(()=>{
-      setData(ShippingsStaticData)
-    },[]);
+const [data,setData] = useState(ShippingsStaticData);
+
+useEffect(() => {
+  const fetchShippingsData = async () => {
+    const ShippingsData = await getEntregas();
+    setData(ShippingsData.find(item => item.IdEntregaOK === id).envios);
+  };
+
+  fetchShippingsData();
+}, []);
 
     console.log(data)
     return (
