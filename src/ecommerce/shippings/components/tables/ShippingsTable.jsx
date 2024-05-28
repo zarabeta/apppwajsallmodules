@@ -38,12 +38,12 @@ const ShippingsColumns = [
     size: 50, //small column
   },
   {
-    accessorKey: "Productos",
+    accessorKey: "productos",
     header: "productos",
     size: 50, //small column
   },
   {
-    accessorKey: "Estatus",
+    accessorKey: "estatus",
     header: "estatus",
     size: 50, //small column
   },
