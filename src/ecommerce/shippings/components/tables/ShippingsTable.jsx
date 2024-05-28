@@ -37,16 +37,7 @@ const ShippingsColumns = [
     header: "Costo",
     size: 50, //small column
   },
-  {
-    accessorKey: "Productos",
-    header: "productos",
-    size: 50, //small column
-  },
-  {
-    accessorKey: "Estatus",
-    header: "estatus",
-    size: 50, //small column
-  },
+  
 ];
 
 //FIC: Table - FrontEnd.
