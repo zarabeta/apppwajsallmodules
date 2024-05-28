@@ -85,7 +85,7 @@ const { id } = useParams();
     fetchShippingsData();
   }, []);
 
-    console.log()
+    console.log(data);
     return (
       <Box>
         <Box> 
