@@ -14,7 +14,7 @@ import { useParams } from 'react-router-dom';
 import ShippingsStaticData from '../../../../../db/ecommerce/json/shippings/ShippingsData';
 import { getEntregas } from '../../../../core/api/entregas';
 import AddShippingsModal from "../modals/AddShippingsModal"
-
+ 
 //FIC: Columns Table Definition.
 const ShippingsColumns = [
   {
