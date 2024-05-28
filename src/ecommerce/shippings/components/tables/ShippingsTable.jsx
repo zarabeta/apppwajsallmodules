@@ -1,21 +1,20 @@
-
+//FIC: DB
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import InfoIcon from "@mui/icons-material/Info";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import { Box, Button, darken, Dialog, IconButton, Stack, Tooltip } from "@mui/material";
 //FIC: Material UI
 import { MaterialReactTable } from 'material-react-table';
 import { useState } from "react";
-
-//FIC: DB
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import EditIcon from "@mui/icons-material/Edit";
-import InfoIcon from "@mui/icons-material/Info";
-import DeleteIcon from "@mui/icons-material/Delete";
-import RefreshIcon from "@mui/icons-material/Refresh";
-import {getEntregas} from '../../../../core/api/entregas';
-
-import { Box, Stack, Tooltip, Button, IconButton, Dialog, darken } from "@mui/material";
-import ShippingsStaticData from '../../../../../db/ecommerce/json/shippings/ShippingsData';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
+import ShippingsStaticData from '../../../../../db/ecommerce/json/shippings/ShippingsData';
+import { getEntregas } from '../../../../core/api/entregas';
 import AddShippingsModal from "../modals/AddShippingsModal"
+
 //FIC: Columns Table Definition.
 const ShippingsColumns = [
   {
@@ -54,6 +53,9 @@ const ShippingsColumns = [
 
 
 const ShippingsTable = () => {
+// get id from params route
+const { id } = useParams();
+
   ////////////modal
   const [AddShippingShowModal, setAddShippingShowModal] = useState(false);
   
@@ -123,6 +125,7 @@ const ShippingsTable = () => {
       {/**MODALES */}
       <Dialog open={AddShippingShowModal}>
         <AddShippingsModal
+          id={id}
           AddShippingShowModal={AddShippingShowModal}
           setAddShippingShowModal={setAddShippingShowModal}
           onUpdateShippingData={handleUpdateShippingData} //PARTE DE LA FUNCION handleUpdateShippingData

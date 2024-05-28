@@ -22,10 +22,10 @@ export const apiService = {
                         paramsLocal.append(k, params[k]);
                     }
                 });
-                const response = await instance.get(this.API_URL + '/' + endpoint, { params: paramsLocal });
+                const response = await instance.get(API_URL + '/' + endpoint, { params: paramsLocal });
                 return response.data;
             }
-            const response = await instance.get(this.API_URL + '/' + endpoint);
+            const response = await instance.get(API_URL + '/' + endpoint);
             return response.data;
         } catch (error) {
             console.error(`Error getting data from ${endpoint}`, error);
@@ -34,7 +34,7 @@ export const apiService = {
     },
     post: async (endpoint, data) => {
         try {
-            const response = await instance.post(this.API_URL + '/' + endpoint, data);
+            const response = await instance.post(API_URL + '/' + endpoint, data);
             return response.data;
         } catch (error) {
             console.error(`Error posting data to ${endpoint}`, error);
@@ -43,7 +43,7 @@ export const apiService = {
     },
     put: async (endpoint, data) => {
         try {
-            const response = await instance.put(this.API_URL + '/' + endpoint, data);
+            const response = await instance.put(API_URL + '/' + endpoint, data);
             return response.data;
         } catch (error) {
             console.error(`Error updating data at ${endpoint}`, error);
@@ -52,7 +52,7 @@ export const apiService = {
     },
     delete: async (endpoint) => {
         try {
-            const response = await instance.delete(this.API_URL + '/' + endpoint);
+            const response = await instance.delete(API_URL + '/' + endpoint);
             return response.data;
         } catch (error) {
             console.error(`Error deleting data at ${endpoint}`, error);
