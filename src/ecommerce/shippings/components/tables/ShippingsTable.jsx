@@ -18,7 +18,7 @@ import AddShippingsModal from "../modals/AddShippingsModal"
 //FIC: Columns Table Definition.
 const ShippingsColumns = [
   {
-    accessorKey: "IdEntregaOK",
+    accessorKey: "IdDomicilioOK",
     header: "Address ID",
     size: 30, //small column
   },
@@ -44,12 +44,12 @@ const ShippingsColumns = [
 
 
 const ShippingsTable = () => {
-// get id from params route
-const { id } = useParams();
+  // get id from params route
+  const { id } = useParams();
 
   ////////////modal
   const [AddShippingShowModal, setAddShippingShowModal] = useState(false);
-  
+
   const handleUpdateShippingData = async () => {
     try {
       const updatedShippingsData = await getAllShippings();
@@ -65,22 +65,30 @@ const { id } = useParams();
   const [selectedRowIndex, setSelectedRowIndex] = useState(null); //Para saber cual es la fila y pasarla para el color de la tabla
   /////////////////////////
 
-const [data,setData] = useState(ShippingsStaticData);
+  const [data, setData] = useState(ShippingsStaticData);
 
-useEffect(() => {
-  const fetchShippingsData = async () => {
-    const ShippingsData = await getEntregas();
-    setData(ShippingsData.find(item => item.IdEntregaOK === id).envios);
-  };
+  useEffect(() => {
+    const fetchShippingsData = async () => {
+      const ShippingsData = await getEntregas();
+      console.log("🚀 ~ fetchShippingsData ~ ShippingsData:", ShippingsData)
+      setData((ShippingsData.find(item => item.IdEntregaOK === id).envios).map(_castDataToTableFormat));
+    };
 
-  fetchShippingsData();
-}, []);
+    fetchShippingsData();
+  }, []);
 
-    console.log(data);
-    return (
+  const _castDataToTableFormat = (data) => {
+    return {
+      ...data,
+      Productos: data.productos.map(item => item.IdProdServOK).join(', '),
+      Estatus: data.estatus.map(item => item.IdTipoEstatusOK).join(', ')
+    }
+  }
+
+  return (
+    <Box>
       <Box>
-        <Box> 
-          <MaterialReactTable
+        <MaterialReactTable
           initialState={{ density: "compact", showGlobalFilter: true }}
           columns={ShippingsColumns}
 
