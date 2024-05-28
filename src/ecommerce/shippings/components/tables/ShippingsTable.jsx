@@ -76,7 +76,7 @@ const ShippingsTable = () => {
 
     fetchShippingsData();
   }, []);
-
+ 
   const _castDataToTableFormat = (data) => {
     return {
       ...data,
