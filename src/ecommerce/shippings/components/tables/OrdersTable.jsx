@@ -13,7 +13,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import DeleteIcon from "@mui/icons-material/Delete";
 //FIC: Columns Table Definition.
 const OrdersColumns = [
-  {
+  { 
     accessorKey: "IdInstitutoOK",
     header: "ID Institute",
     size: 30, //small column
@@ -100,7 +100,7 @@ const OrdersTable = () => {
             style: { cursor: 'pointer' }, // Change cursor to pointer on hover
           })}
 
-        />
+        /> 
       </Box>
     </Box>
   )

@@ -1,15 +1,36 @@
 // AddProductoShowModal.jsx
 
 import React, { useState } from 'react';
+import { newProduct } from '../../../../core/api/productos';
 
-const AddProductoShowModal = ({ onClose }) => {
-  const [IdProdServOK, setIdProdServOK] = useState('');
-  const [DesProdServ, setDesProdServ] = useState('');
-  const [DesPresenta, setDesPresenta] = useState('');
-  const [CantidadPed, setCantidadPed] = useState('');
-  const [CantidadEnt, setCantidadEnt] = useState('');
+
+const AddProductoShowModal = ({ onClose, id, idpaq }) => {
+  const [idProdServOK, setIdProdServOK] = useState('');
+  const [idPresentaOK, setIdPresentaOK] = useState('');
+  const [desProdServ, setDesProdServ] = useState('');
+  const [desPresenta, setDesPresenta] = useState('');
+  const [cantidadPed, setCantidadPed] = useState('');
+  const [cantidadEnt, setCantidadEnt] = useState('');
 
   // Lógica para manejar cambios en los campos y enviar datos al servidor
+  const handleSave = async () => {
+    const producto = {
+      IdProdServOK: idProdServOK,
+      IdPresentaOK: idPresentaOK,
+      DesProdServ: desProdServ,
+      DesPresenta: desPresenta,
+      CantidadPed: cantidadPed,
+      CantidadEnt: cantidadEnt
+    };
+
+    try {
+      const response = await newProduct(id, idpaq, producto);
+      console.log(response);
+      onClose();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="modal">
@@ -20,34 +41,40 @@ const AddProductoShowModal = ({ onClose }) => {
       <input
         type="text"
         placeholder="Producto ID"
-        value={IdProdServOK}
+        value={idProdServOK}
         onChange={(e) => setIdProdServOK(e.target.value)}
       />
       <input
         type="text"
+        placeholder="Presentacion ID"
+        value={idPresentaOK}
+        onChange={(e) => setIdPresentaOK(e.target.value)}
+      />
+      <input
+        type="text"
         placeholder="Descripcion"
-        value={DesProdServ}
+        value={desProdServ}
         onChange={(e) => setDesProdServ(e.target.value)}
       />
       <input
         type="text"
         placeholder="Presentacion"
-        value={DesPresenta}
+        value={desPresenta}
         onChange={(e) => setDesPresenta(e.target.value)}
       />
       <input
         type="text"
         placeholder="Cantidad pedida"
-        value={CantidadPed}
+        value={cantidadPed}
         onChange={(e) => setCantidadPed(e.target.value)}
       />
       <input
         type="text"
         placeholder="Enviados"
-        value={CantidadEnt}
+        value={cantidadEnt}
         onChange={(e) => setCantidadEnt(e.target.value)}
       />
-      <button>Guardar</button>
+      <button onClick={handleSave}>Guardar</button>
     </div>
   );
 };

@@ -12,15 +12,15 @@ const AddShippingShowModal = ({ onClose, id }) => {
   const [productos, setProductos] = useState('');
   const [estatus, setEstatus] = useState('');
   // Lógica para manejar cambios en los campos y enviar datos al servidor
-
+ 
   const handleSave = async () => {
     const entrega = {
-      IdDomicilioOK: addressId,
+      IdEntregaOK: addressId,
       IdPaqueteriaOK: repartidorId,
       IdTipoMetodoEnvio: metodoEnvio,
       CostoEnvio:costoEnvio,
       // productos,
-      // estatus,
+      // estatus, 
       productos:[{}],
       estatus:[{}],
     };
@@ -67,18 +67,6 @@ const AddShippingShowModal = ({ onClose, id }) => {
         placeholder="Costo de Envío"
         value={costoEnvio}
         onChange={(e) => setCostoEnvio(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Productos"
-        value={productos}
-        onChange={(e) => setProductos(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Estatus"
-        value={estatus}
-        onChange={(e) => setEstatus(e.target.value)}
       />
       <button onClick={handleSave}>Guardar</button>
     </div>

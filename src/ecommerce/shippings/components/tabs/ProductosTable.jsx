@@ -8,14 +8,12 @@ import EditIcon from "@mui/icons-material/Edit";
 import InfoIcon from "@mui/icons-material/Info";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import ProductosSData from "../../../../../db/ecommerce/json/products/ProductosData"
+import ProductsSData from "../../../../../db/ecommerce/json/products/ProductosData"
 
 import { useParams } from 'react-router-dom';
 
-import { getEntregas } from '../../../../core/api/entregas';
 import AddProductosModal from "../modals/AddProductosModal";
 import { getProductos } from "../../../../core/api/productos";
-
 //FIC: DB
 // import { GetAllSubdoc } from "../../services/remote/get/GetAllInfoAd";
 //import { GetEnviosId } from "../../services/remote/get/GetEnviosId";
@@ -89,7 +87,7 @@ const ProductosTable = ({ }) => {
     const fetchProductosData = async () => {
       const ProductosData = await getProductos();
       console.log("🚀 ~ fetchProductosData ~ ProductosData:", ProductosData)
-      setData((ProductosData.envios.find(item => item.IdEntregaOK === id).envios).productos);
+      setData((ProductosData.find(item => item.IdEntregaOK === id).envios));
     };
 
     fetchProductosData();

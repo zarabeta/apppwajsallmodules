@@ -10,18 +10,15 @@ import { MaterialReactTable } from 'material-react-table';
 import { useState } from "react";
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import ShippingsStaticData from '../../../../../db/ecommerce/json/shippings/ShippingsData';
 import { getEntregas } from '../../../../core/api/entregas';
+
 import AddShippingsModal from "../modals/AddShippingsModal"
  
 //FIC: Columns Table Definition.
 const ShippingsColumns = [
-  {
-    accessorKey: "IdDomicilioOK",
-    header: "Address ID",
-    size: 30, //small column
-  },
   {
     accessorKey: "IdPaqueteriaOK",
     header: "Courier ID",
@@ -37,7 +34,6 @@ const ShippingsColumns = [
     header: "Costo",
     size: 50, //small column
   },
-  
 ];
 
 //FIC: Table - FrontEnd.
@@ -59,6 +55,7 @@ const ShippingsTable = () => {
       console.error("Error updating shipping data:", error);
     }
   };
+
   const [isEditMode, setIsEditMode] = useState(false); //Para determinar si la modal está en modo de edicion/agregar (true=editar || false=agregar)
   const [editData, setEditData] = useState(false);     //Para saber si hay que rellenar los textfield con datos en caso de estar en modo de edición
   const [isDeleteMode, setIsDeleteMode] = useState(false); //Para saber si está en modo de eliminación o no
@@ -71,19 +68,19 @@ const ShippingsTable = () => {
     const fetchShippingsData = async () => {
       const ShippingsData = await getEntregas();
       console.log("🚀 ~ fetchShippingsData ~ ShippingsData:", ShippingsData)
-      setData((ShippingsData.find(item => item.IdEntregaOK === id).envios).map(_castDataToTableFormat));
+      setData((ShippingsData.find(item => item.IdEntregaOK === id).envios));
     };
 
     fetchShippingsData();
   }, []);
  
-  const _castDataToTableFormat = (data) => {
-    return {
-      ...data,
-      Productos: data.productos.map(item => item.IdProdServOK).join(', '),
-      Estatus: data.estatus.map(item => item.IdTipoEstatusOK).join(', ')
-    }
-  }
+
+  const navigate = useNavigate();
+  
+  const handleRowClick = (row) => {
+    const paqId = row.original.IdPaqueteriaOK;
+    navigate(`/products/${paqId}`);
+  };
 
   return (
     <Box>
@@ -120,14 +117,20 @@ const ShippingsTable = () => {
                       <InfoIcon />
                     </IconButton>
                   </Tooltip>
+                  
                 </Box>
               </Stack>
               {/* ------- BARRA DE ACCIONES FIN ------ */}
             </>
           )}
+
+          muiTableBodyRowProps={({ row }) => ({
+            onClick: () => handleRowClick(row),
+            style: { cursor: 'pointer' }, // Change cursor to pointer on hover
+          })}
         />
       </Box>
-
+          
 
       {/**MODALES */}
       <Dialog open={AddShippingShowModal}>

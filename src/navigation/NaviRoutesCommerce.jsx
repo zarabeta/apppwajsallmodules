@@ -7,6 +7,7 @@ import Payments from "../ecommerce/payments/pages/Payments";
 import Shippings from "../ecommerce/shippings/pages/Shippings";
 import Error from "../share/errors/pages/Error";
 import ShippingsId from "../ecommerce/shippings/pages/ShippingsId";
+import ProductsId from "../ecommerce/shippings/pages/ProductsId";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/shippings/:id",
         element: <ShippingsId />,
+      },
+      {
+        path: "/products/:idp",
+        element: <ProductsId />,
       },
     ],
   },
